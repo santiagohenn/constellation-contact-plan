@@ -110,7 +110,7 @@ contact_plan_json = jsonencode(data);
 %%
 
 path = 'output/';
-file_name = strcat('contact_plan_a_',num2str(a),'_i_',num2str(inc),'_t_',num2str(t),'_f_',num2str(f),'.json');
+file_name = strcat('contact_plan_a_',num2str(a),'_i_',num2str(inc),'_t_',num2str(t),'_p_',num2str(p),'_f_',num2str(f),'.json');
 file_name = strcat(path,file_name);
 
 % Save the contact plan to JSON
@@ -122,7 +122,7 @@ fprintf(fileID, '%s', contact_plan_json);
 fclose(fileID);
 
 % Save the satellite's specs
-file_name = strcat('constellation_specs_a_',num2str(a),'_i_',num2str(inc),'_t_',num2str(t),'_f_',num2str(f),'.json');
+file_name = strcat('constellation_specs_a_',num2str(a),'_i_',num2str(inc),'_t_',num2str(t),'_p_',num2str(p),'_f_',num2str(f),'.json');
 file_name = strcat(path,file_name);
 fileID = fopen(file_name, 'w');
 if fileID == -1
@@ -132,7 +132,7 @@ fprintf(fileID, '%s', jsonencode(satellite_elements));
 fclose(fileID);
 
 % Save the scenario specs
-file_name = strcat('scenario_specs_a_',num2str(a),'_i_',num2str(inc),'_t_',num2str(t),'_f_',num2str(f),'.json');
+file_name = strcat('scenario_specs_a_',num2str(a),'_i_',num2str(inc),'_t_',num2str(t),'_p_',num2str(p),'_f_',num2str(f),'.json');
 file_name = strcat(path,file_name);
 fileID = fopen(file_name, 'w');
 if fileID == -1
