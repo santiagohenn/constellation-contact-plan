@@ -15,7 +15,7 @@ WD constellations are usually named using the nomenclature i: t/p/f, where:
 Satellites are populated in order according to WD parameters. Each satellite is named as PX_SY, where X is the plane number and Y is the satellite number within that plane. Satellites are named in order, so, for example:
 
 * P1_S1 is the first satellite in the first plane.
-* P5_S2 is the fifth satellite from the second plane.
+* P2_S5 is the fifth satellite from the second plane.
 * P1_S2 is the second satellite in the first plane, adjacent to P1_S1.
 * If there are 8 satellites per plane, then P1_S8 is adjacent to P1_S1.
 * The same logic applies to planes: P(X-1)_SY is "to the left" of PX_SY, and P(X+1)_SY is "to the right" of PX_SY. 
