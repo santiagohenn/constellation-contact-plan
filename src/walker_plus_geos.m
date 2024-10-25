@@ -151,7 +151,7 @@ for geo_idx = 1 : 3
     end
     
 end
-
+%%
 % Access between GEOs
 for geo_idx_1 = 1 : 3
     
@@ -160,22 +160,21 @@ for geo_idx_1 = 1 : 3
     data.(geo_name_1) = struct();
     
     for geo_idx_2 = 1 : 3
-       if geo_idx_1 == geo_idx_2
+        if geo_idx_1 == geo_idx_2
             continue;
-       end
-    end
-    
-    geo_name_2 = strcat('GEO_',num2str(geo_idx_2));
-    disp([geo_name_1 ' to ' geo_name_2])
-    sat2 = scenario.Children.Item(geo_name_2);
-    access = sat1.GetAccessToObject(sat2);
-    access.ComputeAccess();
-    intervalCollection = access.ComputedAccessIntervaltimes;
-    if intervalCollection.Count ~= 0
-        computedIntervals = intervalCollection.ToArray(0, -1);
-        data.(geo_name_1).(geo_name_2) = cell2mat(computedIntervals);
-    else
-        data.(geo_name_1).(geo_name_2) = [0, 0];
+        end
+        geo_name_2 = strcat('GEO_',num2str(geo_idx_2));
+        disp([geo_name_1 ' to ' geo_name_2])
+        sat2 = scenario.Children.Item(geo_name_2);
+        access = sat1.GetAccessToObject(sat2);
+        access.ComputeAccess();
+        intervalCollection = access.ComputedAccessIntervaltimes;
+        if intervalCollection.Count ~= 0
+            computedIntervals = intervalCollection.ToArray(0, -1);
+            data.(geo_name_1).(geo_name_2) = cell2mat(computedIntervals);
+        else
+            data.(geo_name_1).(geo_name_2) = [0, 0];
+        end
     end
     
 end
@@ -186,7 +185,7 @@ contact_plan_json = jsonencode(data);
 %%
 
 path = 'output/';
-file_name = strcat('contact_plan_a_',num2str(a),'_i_',num2str(inc),'_t_',num2str(t),'_p_',num2str(planes),'_f_',num2str(f),'and_GEOs.json');
+file_name = strcat('contact_plan_a_',num2str(a),'_i_',num2str(inc),'_t_',num2str(t),'_p_',num2str(planes),'_f_',num2str(f),'_and_GEOs.json');
 file_name = strcat(path,file_name);
 
 % Save the contact plan to JSON
@@ -198,7 +197,7 @@ fprintf(fileID, '%s', contact_plan_json);
 fclose(fileID);
 
 % Save the satellite's specs
-file_name = strcat('constellation_specs_a_',num2str(a),'_i_',num2str(inc),'_t_',num2str(t),'_p_',num2str(planes),'_f_',num2str(f),'and_GEOs.json');
+file_name = strcat('constellation_specs_a_',num2str(a),'_i_',num2str(inc),'_t_',num2str(t),'_p_',num2str(planes),'_f_',num2str(f),'_and_GEOs.json');
 file_name = strcat(path,file_name);
 fileID = fopen(file_name, 'w');
 if fileID == -1
@@ -208,7 +207,7 @@ fprintf(fileID, '%s', jsonencode(satellite_elements));
 fclose(fileID);
 
 % Save the scenario specs
-file_name = strcat('scenario_specs_a_',num2str(a),'_i_',num2str(inc),'_t_',num2str(t),'_p_',num2str(planes),'_f_',num2str(f),'and_GEOs.json');
+file_name = strcat('scenario_specs_a_',num2str(a),'_i_',num2str(inc),'_t_',num2str(t),'_p_',num2str(planes),'_f_',num2str(f),'_and_GEOs.json');
 file_name = strcat(path,file_name);
 fileID = fopen(file_name, 'w');
 if fileID == -1
